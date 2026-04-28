@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>公众号文章同步</title>
+    <link rel="stylesheet" href="__WEAPP_TEMPLATE__/static/css/style.css" />
+</head>
+<body>
+<div class="wrap">
+    <h2>手动同步文章到微信公众号草稿箱</h2>
+    <form id="syncForm" method="post">
+        <div class="form-row">
+            <label>文章ID</label>
+            <input type="number" name="aid" required>
+        </div>
+        <div class="form-row">
+            <label>同步后自动发布</label>
+            <select name="auto_publish">
+                <option value="0">否（默认）</option>
+                <option value="1">是</option>
+            </select>
+        </div>
+        <button type="submit">立即同步</button>
+    </form>
+
+    <div class="tips">
+        <p>当前自动同步：{if condition="$config.auto_sync eq 1"}开启{else /}关闭{/if}</p>
+        <p>默认自动发布：{if condition="$config.auto_publish eq 1"}开启{else /}关闭{/if}</p>
+        <p><a href="{:weapp_url('WxMpSync/WxMpSync/config')}" target="_self">配置公众号参数</a></p>
+        <p><a href="{:weapp_url('WxMpSync/WxMpSync/log')}" target="_self">查看同步日志</a></p>
+    </div>
+</div>
+<script src="__STATIC__/common/js/jquery.min.js"></script>
+<script>
+$('#syncForm').on('submit', function (e) {
+    e.preventDefault();
+    $.post('', $(this).serialize(), function (res) {
+        alert(res.msg || '执行完成');
+        if (res.code) {
+            location.href = "{:weapp_url('WxMpSync/WxMpSync/log')}";
+        }
+    }, 'json');
+});
+</script>
+</body>
+</html>
