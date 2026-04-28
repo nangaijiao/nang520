@@ -1,0 +1,9 @@
+.wrap{padding:20px;font-family:Arial;}
+.form-row{margin-bottom:12px;}
+.form-row label{display:inline-block;width:140px;font-weight:bold;}
+.form-row input,.form-row select{width:420px;padding:6px;}
+.table{width:100%;border-collapse:collapse;margin-top:15px;}
+.table th,.table td{border:1px solid #ddd;padding:8px;font-size:13px;}
+.red{color:#d9001b;}
+button{padding:8px 18px;background:#1aad19;color:#fff;border:0;cursor:pointer;}
+.tips{margin-top:20px;line-height:1.8;}

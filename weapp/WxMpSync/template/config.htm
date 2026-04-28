@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>公众号配置</title>
+    <link rel="stylesheet" href="__WEAPP_TEMPLATE__/static/css/style.css" />
+</head>
+<body>
+<div class="wrap">
+    <h2>微信公众号配置</h2>
+    <form method="post">
+        <div class="form-row"><label>AppID</label><input type="text" name="appid" value="{$config.appid|default=''}"></div>
+        <div class="form-row"><label>AppSecret</label><input type="text" name="appsecret" value="{$config.appsecret|default=''}"></div>
+        <div class="form-row"><label>网站域名</label><input type="text" name="site_domain" value="{$config.site_domain|default=''}" placeholder="https://www.example.com"></div>
+        <div class="form-row"><label>默认作者</label><input type="text" name="default_author" value="{$config.default_author|default=''}"></div>
+        <div class="form-row"><label>自动同步新文章</label>
+            <select name="auto_sync"><option value="0" {if condition="$config.auto_sync neq 1"}selected{/if}>关闭</option><option value="1" {if condition="$config.auto_sync eq 1"}selected{/if}>开启</option></select>
+        </div>
+        <div class="form-row"><label>自动提交发布</label>
+            <select name="auto_publish"><option value="0" {if condition="$config.auto_publish neq 1"}selected{/if}>关闭</option><option value="1" {if condition="$config.auto_publish eq 1"}selected{/if}>开启</option></select>
+        </div>
+        <div class="form-row"><label>默认同步栏目ID</label><input type="text" name="default_channel" value="{$config.default_channel|default=''}"></div>
+        <div class="form-row"><label>默认封面图</label><input type="text" name="default_litpic" value="{$config.default_litpic|default=''}" placeholder="/uploads/allimg/xxx.jpg"></div>
+        <button type="submit">保存配置</button>
+    </form>
+</div>
+</body>
+</html>

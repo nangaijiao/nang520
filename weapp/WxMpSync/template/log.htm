@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>同步日志</title>
+    <link rel="stylesheet" href="__WEAPP_TEMPLATE__/static/css/style.css" />
+</head>
+<body>
+<div class="wrap">
+    <h2>同步日志</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>文章ID</th>
+            <th>标题</th>
+            <th>状态</th>
+            <th>草稿media_id</th>
+            <th>发布ID</th>
+            <th>失败原因</th>
+            <th>更新时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.aid}</td>
+            <td>{$vo.title}</td>
+            <td>
+                {if condition="$vo.status eq 0"}待同步{/if}
+                {if condition="$vo.status eq 1"}草稿成功{/if}
+                {if condition="$vo.status eq 2"}发布成功{/if}
+                {if condition="$vo.status eq -1"}<span class="red">同步失败</span>{/if}
+            </td>
+            <td>{$vo.media_id}</td>
+            <td>{$vo.publish_id}</td>
+            <td>{$vo.err_msg|default='-'}</td>
+            <td>{$vo.update_time|MyDate='Y-m-d H:i:s',###}</td>
+            <td><a href="{:weapp_url('WxMpSync/WxMpSync/retry', ['aid'=>$vo.aid])}">重新同步</a></td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div>{$page|default=''}</div>
+</div>
+</body>
+</html>
